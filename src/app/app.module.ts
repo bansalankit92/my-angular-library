@@ -6,7 +6,7 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 
 import { HeaderComponent } from './component/header/header.component';
-import { ConfigOption } from 'app/component/service/config';
+import { ConfigOption } from 'app/service/config';
 
 
 @NgModule({
@@ -27,7 +27,7 @@ export class MyAppModule {
   static forRoot(config: ConfigOption = {}): ModuleWithProviders {
     return {
       ngModule: MyAppModule,
-      providers: [ConfigOption ],
+      providers: [{provide:'config',useValue:config} ],
     };
   }
 }
