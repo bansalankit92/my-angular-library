@@ -1,12 +1,12 @@
 
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 
-import { FullfillmentWebRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './component/header/header.component';
+import { ConfigOption } from 'app/component/service/config';
 
 
 @NgModule({
@@ -17,12 +17,18 @@ import { HeaderComponent } from './component/header/header.component';
   imports: [
     BrowserModule,
     HttpModule,
-    FullfillmentWebRoutingModule,
   ],
   providers: [
   ],
   exports:[HeaderComponent],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class MyAppModule {
+  static forRoot(config: ConfigOption = {}): ModuleWithProviders {
+    return {
+      ngModule: MyAppModule,
+      providers: [ConfigOption ],
+    };
+  }
+}
 
